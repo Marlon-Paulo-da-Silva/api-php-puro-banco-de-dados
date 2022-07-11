@@ -1,19 +1,37 @@
 <?php
 
-// resposta temporaria
-header("Content-Type:application/json");
+// dependencies
+require_once(dirname(__FILE__) . '/inc/config.php');
+require_once(dirname(__FILE__) . '/inc/api_class.php');
 
-$data['status'] = 'SUCCESS';
-$data['method'] = $_SERVER['REQUEST_METHOD'];
 
-// apresentar as variáveis que vieram no pedido (get ou post)
+// instanciate the api_class
+$api = new api_class();
 
-if($data['method'] == 'GET'){
-    $data['data'] = $_GET;
 
-} else if($data['method'] == 'POST'){
-    $data['data'] = $_POST;
+// //check the method
+// if(!$api->check_method($_SERVER['REQUEST_METHOD'])){
+    $api->api_request_error('Aconteceu um erro na API !!');
+// }
+
+echo 'OK';
+
+
+
+// // resposta temporaria
+// header("Content-Type:application/json");
+
+// $data['status'] = 'SUCCESS';
+// $data['method'] = $_SERVER['REQUEST_METHOD'];
+
+// // apresentar as variáveis que vieram no pedido (get ou post)
+
+// if($data['method'] == 'GET'){
+//     $data['data'] = $_GET;
+
+// } else if($data['method'] == 'POST'){
+//     $data['data'] = $_POST;
     
-}
+// }
 
-echo json_encode($data);
+// echo json_encode($data);
