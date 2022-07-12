@@ -37,28 +37,36 @@ class api_response
         // sets the request endpoint
         $this->data['endpoint'] = $endpoint;
     }
-
+    
+    // =================================================
     public function get_endpoint()
     {
         // return the current request endpoint
         return $this->data['endpoint'];
     }
+
+    // =================================================
+    public function add_to_data($key, $value)
+    {
+        // add new key to data
+        $this->data[$key] = $value;
+
+    }
     
 
-
-
-
-
-
-
-
+    // OUTPUTS
 
     // =================================================
     public function api_request_error($message = ''){
 
+        $data_error = [
+            'status' => 'ERROR',
+            'message' => $message,
+            'results' => null
+        ];
+
         // output an api error message
-        $this->data['status'] = 'ERROR';
-        $this->data['error_message'] = $message;
+        $this->data['data'] = $data_error;
         $this->send_response();
     }
 

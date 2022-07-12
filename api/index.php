@@ -29,7 +29,6 @@ if($api_response->get_method() == 'GET'){
 } else if($api_response->get_method() == 'POST'){
     $api_response->set_endpoint($_POST['endpoint']);
     $params = $_POST;
-
 }
 
 // =================================================
@@ -41,47 +40,13 @@ $api_logic = new api_logic($api_response->get_endpoint(), $params);
 // check if endpoint exist
 if(!$api_logic->endpoint_exists())
 {
-    $api_response->api_request_error('Inexistente endpoint: ', $api_response->get_endpoint());
+    $api_response->api_request_error('Inexistente endpoint: '. $api_response->get_endpoint());
 }
 
 // request to the api_logic
+$result = $api_logic->{$api_response->get_endpoint()}();
 
+$api_response->add_to_data('data', $result);
 
-
-
-
-
-
-
-
-
-// routes
-
-
-$api->send_api_status();
-
-// //check the method
-// if(!$api->check_method($_SERVER['REQUEST_METHOD'])){
-    // $api->api_request_error('Aconteceu um erro na API !!');
-    // }
-    
-
-
-
-// // resposta temporaria
-// header("Content-Type:application/json");
-
-// $data['status'] = 'SUCCESS';
-// $data['method'] = $_SERVER['REQUEST_METHOD'];
-
-// // apresentar as variáveis que vieram no pedido (get ou post)
-
-// if($data['method'] == 'GET'){
-//     $data['data'] = $_GET;
-
-// } else if($data['method'] == 'POST'){
-//     $data['data'] = $_POST;
-    
-// }
-
-// echo json_encode($data);
+$api_response->send_response();
+// $api_response->send_api_status();

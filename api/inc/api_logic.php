@@ -30,11 +30,22 @@ class api_logic
     public function status()
     {
 
+        return [
+            'status' => 'SUCCESS',
+            'message' => 'API is Running',
+            'results' => null
+        ];
     }
 
     public function get_all_clients()
     {
-        
+        return [
+            'status' => 'SUCCESS',
+            'message' => '',
+            'results' => [
+                'joao', 'ana', 'pedro', 'antonio'
+            ]
+        ];
     }
 
     public function get_all_products()
