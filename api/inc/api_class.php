@@ -11,7 +11,7 @@ class api_class
     }
 
     // =================================================
-    public function check_method(){
+    public function check_method($method){
         
         // check if method is valid
         return in_array($method, $this->available_methods);
@@ -22,7 +22,30 @@ class api_class
 
         // sets the response method
         $this->data['method'] = $method;
+        
     }
+
+    // =================================================
+    public function get_method(){
+
+        // return the request method
+        return $this->data['method'];
+    }    
+
+    // =================================================
+    public function set_endpoint($endpoint){
+        // sets the request endpoint
+        $this->data['endpoint'] = $endpoint;
+    }
+    
+
+
+
+
+
+
+
+
 
     // =================================================
     public function api_request_error($message = ''){
@@ -30,6 +53,14 @@ class api_class
         // output an api error message
         $this->data['status'] = 'ERROR';
         $this->data['error_message'] = $message;
+        $this->send_response();
+    }
+
+    // =================================================
+    public function send_api_status(){
+        // send api status
+        $this->data['status'] = 'SUCCESS';
+        $this->data['message'] = 'API is Running !!';
         $this->send_response();
     }
 
