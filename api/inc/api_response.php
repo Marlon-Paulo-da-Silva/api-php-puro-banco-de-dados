@@ -1,6 +1,6 @@
 <?php
 
-class api_class
+class api_response
 {
     private $data;
     private $available_methods = ['GET', 'POST'];
