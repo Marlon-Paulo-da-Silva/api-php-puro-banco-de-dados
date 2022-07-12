@@ -37,6 +37,12 @@ class api_response
         // sets the request endpoint
         $this->data['endpoint'] = $endpoint;
     }
+
+    public function get_endpoint()
+    {
+        // return the current request endpoint
+        return $this->data['endpoint'];
+    }
     
 
 
