@@ -14,3 +14,6 @@ print_r($results);
 
 $results = api_request('get_all_clients', 'GET');
 print_r($results);
+
+$results = api_request('get_all_products', 'GET');
+print_r($results);

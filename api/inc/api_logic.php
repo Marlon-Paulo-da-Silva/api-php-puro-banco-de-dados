@@ -37,6 +37,7 @@ class api_logic
         ];
     }
 
+    // ----------------------------------------------------
     public function get_all_clients()
     {
         return [
@@ -48,9 +49,16 @@ class api_logic
         ];
     }
 
+    // ----------------------------------------------------
     public function get_all_products()
     {
-        
+        return [
+            'status' => 'SUCCESS',
+            'message' => '',
+            'results' => [
+                'martelo', 'parafuso', 'prego', 'alicate'
+            ]
+        ];
     }
 
 }
