@@ -40,24 +40,28 @@ class api_logic
     // ----------------------------------------------------
     public function get_all_clients()
     {
+        // return all clients from our database
+        $db = new database();
+        $results = $db->EXE_QUERY("SELECT * FROM clientes");
+
         return [
             'status' => 'SUCCESS',
             'message' => '',
-            'results' => [
-                'joao', 'ana', 'pedro', 'antonio'
-            ]
+            'results' => $results
         ];
     }
 
     // ----------------------------------------------------
     public function get_all_products()
     {
+        // return all products in the database
+        $db = new database();
+        $results = $db->EXE_QUERY("SELECT * FROM produtos");
+
         return [
             'status' => 'SUCCESS',
             'message' => '',
-            'results' => [
-                'martelo', 'parafuso', 'prego', 'alicate'
-            ]
+            'results' => $results
         ];
     }
 
