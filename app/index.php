@@ -20,7 +20,7 @@ require_once('inc/api_functions.php');
 // echo '<pre>';
 // print_r($results);
 
-$results = api_request('get_all_clients', 'GET');
+$results = api_request('get_all_clients', 'GET', ['only_active' => true]);
 // ------------------------------------------------------
 foreach($results['data']['results'] as $client){
   echo $client['nome'].' - '.$client['email'].'<br />';
