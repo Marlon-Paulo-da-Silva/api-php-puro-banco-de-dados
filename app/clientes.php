@@ -3,6 +3,7 @@
 // dependencies
 require_once('inc/config.php');
 require_once('inc/api_functions.php');
+require_once('inc/functions.php');
 
 
 // // ------------------------------------------------------
@@ -15,6 +16,19 @@ require_once('inc/api_functions.php');
 
 
 // Logica e regras de negocio
+$results = api_request('get_all_clients', 'GET');
+
+// Analisar a informação obtida
+if($results['data']['status'] == 'SUCCESS'){
+  $clientes = $results['data']['results'];
+} else {
+  $clientes = [];
+}
+
+
+// $clientes = api_request('get_all_clients', 'GET'); //['data']['results'];
+
+// printData($clientes);
 ?>
 
 <!DOCTYPE html>
@@ -34,22 +48,30 @@ require_once('inc/api_functions.php');
       <div class="col">
         <h1>Clientes</h1>
         <hr>
-        <table class="table">
-          <thead class="table-dark">
-            <tr>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Telefone</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nome do cliente</td>
-              <td>E-mail do cliente</td>
-              <td>Telefone do cliente</td>
-            </tr>
-          </tbody>
-        </table>
+
+        <?php if(count($clientes) == 0){?>
+          <p class="text-center">Não existem clientes registrados</p>
+        <?php } else { ?>
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($clientes as $cl){ ?>
+                <tr>
+                  <td><?= $cl['nome'] ?></td>
+                  <td><?= $cl['email'] ?></td>
+                  <td><?= $cl['telefone'] ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        <?php } ?>
+
       </div>
     </div>
   </section>
