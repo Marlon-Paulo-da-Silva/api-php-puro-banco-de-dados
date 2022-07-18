@@ -2,7 +2,7 @@
 
 Objetivo da API:
 
-- [ x ] Buscar todos os clientes
+- [X] Buscar todos os clientes
 - [ ] Buscar Todos os produtos
 - [ ] Buscar os produtos sem Estoque
 - [ ] Buscar os produtos com Estoque
