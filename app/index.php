@@ -20,14 +20,33 @@ require_once('inc/api_functions.php');
 // echo '<pre>';
 // print_r($results);
 
-$results = api_request('get_all_clients', 'GET', ['only_active' => true]);
 // ------------------------------------------------------
+echo '<h3>CLIENTES TODOS</h3>';
+$results = api_request('get_all_clients', 'GET');
 foreach($results['data']['results'] as $client){
   echo $client['nome'].' - '.$client['email'].'<br />';
 }
+echo '<hr>';
 
-$results = api_request('get_all_products', 'GET');
 // ------------------------------------------------------
+echo '<h3>CLIENTES ATIVOS</h3>';
+$results = api_request('get_all_active_clients', 'GET');
+foreach($results['data']['results'] as $client){
+  echo $client['nome'].' - '.$client['email'].'<br />';
+}
+echo '<hr>';
+
+// ------------------------------------------------------
+echo '<h3>CLIENTES INATIVOS</h3>';
+$results = api_request('get_all_inactive_clients', 'GET');
+foreach($results['data']['results'] as $client){
+  echo $client['nome'].' - '.$client['email'].'<br />';
+}
+echo '<hr>';
+
+// ------------------------------------------------------
+echo '<h3>PRODUTOS TODOS</h3>';
+$results = api_request('get_all_products', 'GET');
 foreach($results['data']['results'] as $prod){
   echo $prod['produto'].' - '.$prod['quantidade'].'<br />';
 }
