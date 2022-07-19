@@ -46,8 +46,22 @@ if($results['data']['status'] == 'SUCCESS'){
   <section class="container">
     <div class="row">
       <div class="col">
-        <h1>Clientes</h1>
-        <hr>
+
+        <div class="row">
+          <div class="col">
+              <div class="row">
+                <div class="col">
+                  <h1>Clientes</h1>
+                </div>
+                <div class="col text-end align-self-center">
+                  <a href="cliente_novo.php" class="btn btn-primary btn-sm">Adicionar Cliente</a>
+                </div>
+              </div>
+
+          </div>
+        </div>
+
+      
 
         <?php if(count($clientes) == 0){?>
           <p class="text-center">Não existem clientes registrados</p>
@@ -70,6 +84,8 @@ if($results['data']['status'] == 'SUCCESS'){
               <?php } ?>
             </tbody>
           </table>
+
+          <p class="text-end">Total: <strong><?= count($clientes) ?></strong></p>
         <?php } ?>
 
       </div>
