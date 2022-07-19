@@ -247,6 +247,61 @@ class api_logic
     }
 
     // ----------------------------------------------------
+    public function create_new_product(){
+        
+
+        // check if all data is available
+        if(
+            !isset($this->params['produto']) ||
+            !isset($this->params['quantidade']) 
+        ){
+            return $this->error_response('Insuficient product data');
+        }
+
+        $db = new database();
+
+        // check if there is already another product  with the same: name
+        $params = [
+            ':produto' => $this->params['produto']
+        ];
+
+        $results = $db->EXE_QUERY("
+            SELECT id_produto FROM produtos
+            WHERE produto = :produto
+        ", $params);
+
+        if(count($results) != 0){
+            return $this->error_response('There is already another product with the same name');
+        }
+
+
+        // add new client to the database
+        $params = [
+            ':produto' => $this->params['produto'],
+            ':quantidade' => $this->params['quantidade'],
+        ];
+
+
+        $db->EXE_QUERY("
+            INSERT INTO produtos VALUES(
+                0,
+                :produto,
+                :quantidade,
+                NOW(),
+                NOW(),
+                NULL
+            )
+        ", $params);
+
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => 'New product add with success',
+            'results' => []
+        ];
+    }
+
+    // ----------------------------------------------------
     // ENDPOINTS (COLABORADORES)
     // ----------------------------------------------------
 

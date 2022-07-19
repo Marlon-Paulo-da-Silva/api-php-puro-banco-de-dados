@@ -26,7 +26,7 @@ A Aplicação faz todas as requisições através da API Que está dentro do pr�
 <h4>Produtos</h4>
 
 - [X] Buscar Todos os produtos
-- [ ] Adicionar Produtos
+- [X] Adicionar Produtos
 - [X] Buscar os produtos sem Estoque
 - [ ] Buscar os produtos com Estoque
 - [ ] Buscar produto por id_produto
