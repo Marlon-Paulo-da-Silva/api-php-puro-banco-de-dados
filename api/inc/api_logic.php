@@ -47,31 +47,6 @@ class api_logic
     }
 
     // ----------------------------------------------------
-    // public function get_all_clients()
-    // {
-    //     // return all clients from our database, ACTIVE or INACTIVE
-    //     $sql = "SELECT * FROM clientes WHERE 1 ";
-
-    //     // check if only_active exists and is true
-    //     if(key_exists('only_active', $this->params)){
-            
-    //         if(filter_var($this->params['only_active'], FILTER_VALIDATE_BOOLEAN) == true){
-    //             $sql .= "AND deleted_at IS NULL";
-
-    //         }
-    //     }
-
-    //     $db = new database();
-    //     $results = $db->EXE_QUERY($sql);
-
-    //     return [
-    //         'status' => 'SUCCESS',
-    //         'message' => '',
-    //         'results' => $results
-    //     ];
-    // }
-
-    // ----------------------------------------------------
     // ENDPOINTS (CLIENTES)
     // ----------------------------------------------------
 
@@ -145,6 +120,39 @@ class api_logic
             'results' => $results
         ];
     }
+
+
+    // ----------------------------------------------------
+    public function create_new_client(){
+
+        $params = [
+            ':nome' => $this->params['nome'],
+            ':email' => $this->params['email'],
+            ':telefone' => $this->params['telefone']
+        ];
+
+        $db = new database();
+        $db->EXE_QUERY("
+            INSERT INTO clientes VALUES(
+                0,
+                :nome,
+                :email,
+                :telefone,
+                NOW(),
+                NOW(),
+                NULL
+            )
+        ", $params);
+
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => 'Novo cliente adicionado com sucesso',
+            'results' => []
+        ];
+    }
+
+
 
     // ----------------------------------------------------
     // ENDPOINTS (PRODUTOS)
