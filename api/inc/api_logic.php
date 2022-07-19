@@ -124,14 +124,43 @@ class api_logic
 
     // ----------------------------------------------------
     public function create_new_client(){
+        
 
+        // check if all data is available
+        if(
+            !isset($this->params['nome']) ||
+            !isset($this->params['email']) ||
+            !isset($this->params['telefone'])
+        ){
+            return $this->error_response('Insuficient client data');
+        }
+
+        $db = new database();
+
+        // check if there is already another client with the same: name os email
+        $params = [
+            ':nome' => $this->params['nome'],
+            ':email' => $this->params['email']
+        ];
+
+        $results = $db->EXE_QUERY("
+            SELECT id_cliente FROM clientes
+            WHERE nome = :nome OR email = :email
+        ", $params);
+
+        if(count($results) != 0){
+            return $this->error_response('There is already another client with the same name or email');
+        }
+
+
+        // add new client to the database
         $params = [
             ':nome' => $this->params['nome'],
             ':email' => $this->params['email'],
             ':telefone' => $this->params['telefone']
         ];
 
-        $db = new database();
+
         $db->EXE_QUERY("
             INSERT INTO clientes VALUES(
                 0,
@@ -147,7 +176,7 @@ class api_logic
 
         return [
             'status' => 'SUCCESS',
-            'message' => 'Novo cliente adicionado com sucesso',
+            'message' => 'New client add with success',
             'results' => []
         ];
     }
