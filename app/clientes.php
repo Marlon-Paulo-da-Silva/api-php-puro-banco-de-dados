@@ -72,6 +72,7 @@ if($results['data']['status'] == 'SUCCESS'){
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Telefone</th>
+                <th>Ação</th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +81,9 @@ if($results['data']['status'] == 'SUCCESS'){
                   <td><?= $cl['nome'] ?></td>
                   <td><?= $cl['email'] ?></td>
                   <td><?= $cl['telefone'] ?></td>
+                  <td>
+                    <a href="clientes_apagar.php?id=<?= $cl['id_cliente'] ?>">Apagar</a>
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>

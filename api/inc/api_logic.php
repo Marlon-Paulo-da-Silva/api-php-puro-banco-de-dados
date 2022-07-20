@@ -105,7 +105,7 @@ class api_logic
         if(key_exists('id', $this->params)){
             
             if(filter_var($this->params['id'], FILTER_VALIDATE_INT)){
-                $sql .= "AND id_cliente = " . intval($this->params['id']);
+                $sql .= "AND id_cliente = " . intval($this->params['id']) . " LIMIT 1";
             }
         } else {
             return $this->error_response('ID client not specified');
@@ -145,7 +145,7 @@ class api_logic
 
         $results = $db->EXE_QUERY("
             SELECT id_cliente FROM clientes
-            WHERE nome = :nome OR email = :email
+            WHERE nome = :nome OR email = :email LIMIT 1
         ", $params);
 
         if(count($results) != 0){
@@ -177,6 +177,35 @@ class api_logic
         return [
             'status' => 'SUCCESS',
             'message' => 'New client add with success',
+            'results' => []
+        ];
+    }
+
+
+    // ----------------------------------------------------
+    public function delete_client(){
+        
+        // check if all data is available
+        if(
+            !isset($this->params['id'])
+        ){
+            return $this->error_response('Insuficient client data');
+        }
+
+        // HARD delete client on database
+        $db = new database();
+
+        
+        $params = [
+            ':id_cliente' => $this->params['id']
+        ];
+
+        $db->EXE_NON_QUERY("
+            DELETE FROM clientes WHERE id_cliente = :id_cliente LIMIT 1", $params);
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => 'Client deleted with success',
             'results' => []
         ];
     }
@@ -267,7 +296,7 @@ class api_logic
 
         $results = $db->EXE_QUERY("
             SELECT id_produto FROM produtos
-            WHERE produto = :produto
+            WHERE produto = :produto LIMIT 1
         ", $params);
 
         if(count($results) != 0){
