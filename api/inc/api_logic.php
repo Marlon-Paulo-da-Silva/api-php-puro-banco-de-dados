@@ -201,7 +201,8 @@ class api_logic
         ];
 
         $db->EXE_NON_QUERY("
-            DELETE FROM clientes WHERE id_cliente = :id_cliente LIMIT 1", $params);
+            UPDATE clientes SET deleted_at = NOW() WHERE id_cliente = :id_cliente LIMIT 1
+            ", $params);
 
         return [
             'status' => 'SUCCESS',

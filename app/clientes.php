@@ -16,7 +16,7 @@ require_once('inc/functions.php');
 
 
 // Logica e regras de negocio
-$results = api_request('get_all_clients', 'GET');
+$results = api_request('get_all_active_clients', 'GET');
 
 // Analisar a informação obtida
 if($results['data']['status'] == 'SUCCESS'){

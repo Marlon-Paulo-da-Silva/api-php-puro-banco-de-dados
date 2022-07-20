@@ -29,6 +29,8 @@ $id_cliente = $_GET['id'];
 // verifica se é para eliminar o cliente
 if(isset($_GET['confirm']) && $_GET['confirm'] == "true"){
   api_request('delete_client', 'GET', ['id' => $id_cliente]);
+  header("Location: clientes.php");
+  exit;
 }
 
 $results = api_request('get_client', 'GET', ['id' => $id_cliente]);
