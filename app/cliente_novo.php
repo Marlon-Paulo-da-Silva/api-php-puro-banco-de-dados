@@ -18,26 +18,33 @@ $error_message = "";
 $success_message = "";
 
 // Logica e regras de negocio
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   $nome = $_POST['text_nome'];
   $email = $_POST['text_email'];
   $telefone = $_POST['text_telefone'];
 
-  $results = api_request('create_new_client', 'POST',[
-    'nome' => $nome,
-    'email' => $email,
-    'telefone' => $telefone
-  ]);
+  $error_message = "Fill in all the information";
+
+  if($_POST['text_nome'] != "" || $_POST['text_email'] != ""){
+  
+
+    $results = api_request('create_new_client', 'POST',[
+      'nome' => $nome,
+      'email' => $email,
+      'telefone' => $telefone
+    ]);
 
 
-  // apresenta o resultado da operação na API
+    // apresenta o resultado da operação na API
 
 
-  if($results['data']['status'] == 'ERROR'){
-    $error_message = $results['data']['message'];
-  } elseif($results['data']['status'] == 'SUCCESS') {
-    $success_message = $results['data']['message'];
+    if($results['data']['status'] == 'ERROR'){
+      $error_message = $results['data']['message'];
+    } elseif($results['data']['status'] == 'SUCCESS') {
+      $success_message = $results['data']['message'];
+    }
   }
 
 }

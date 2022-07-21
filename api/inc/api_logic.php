@@ -145,7 +145,10 @@ class api_logic
 
         $results = $db->EXE_QUERY("
             SELECT id_cliente FROM clientes
-            WHERE nome = :nome OR email = :email LIMIT 1
+            WHERE 1
+            AND (nome = :nome OR email = :email)
+            AND deleted_at IS NULL
+            LIMIT 1
         ", $params);
 
         if(count($results) != 0){

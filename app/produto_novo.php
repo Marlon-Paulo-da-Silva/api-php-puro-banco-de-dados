@@ -20,6 +20,8 @@ $success_message = "";
 // Logica e regras de negocio
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+  
+
   $produto = $_POST['text_produto'];
   $quantidade = $_POST['text_qtde'];
 

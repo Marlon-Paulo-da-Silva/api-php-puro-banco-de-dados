@@ -21,6 +21,7 @@ A Aplicação faz todas as requisições através da API Que está dentro do pr�
 
 - [X] Buscar todos os clientes
 - [X] Adicionar Cliente
+- [X] Apagar Cliente
 - [ ] Buscar cliente por id_cliente
 
 <h4>Produtos</h4>
