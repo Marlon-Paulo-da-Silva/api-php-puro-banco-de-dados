@@ -186,6 +186,71 @@ class api_logic
 
 
     // ----------------------------------------------------
+    public function update_client(){
+        
+
+        // check if all data is available
+        if(
+            !isset($this->params['id_cliente']) ||
+            !isset($this->params['nome']) ||
+            !isset($this->params['email']) ||
+            !isset($this->params['telefone'])
+        ){
+            return $this->error_response('Insuficient client data');
+        }
+
+        $db = new database();
+
+        // check if there is already another client with the same: name os email
+        $params = [
+            ':id_cliente' => $this->params['id_cliente'],
+            ':nome' => $this->params['nome'],
+            ':email' => $this->params['email']
+        ];
+
+        $results = $db->EXE_QUERY("
+            SELECT id_cliente FROM clientes
+            WHERE 1
+            AND (nome = :nome OR email = :email)
+            AND deleted_at IS NULL
+            AND id_cliente <> :id_cliente
+        ", $params);
+
+        if(count($results) != 0){
+            return $this->error_response('There is already another client with the same name or email');
+        }
+
+
+        // update client to the database
+        $params = [
+            ':id_cliente' => $this->params['id_cliente'],
+            ':nome' => $this->params['nome'],
+            ':email' => $this->params['email'],
+            ':telefone' => $this->params['telefone']
+        ];
+
+        $db->EXE_NON_QUERY("
+            UPDATE clientes SET
+                nome = :nome,
+                email = :email,
+                telefone = :telefone,
+                update_at = now()
+            WHERE
+                id_cliente = :id_cliente
+        ", $params);
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => 'Client data updated with success',
+            'results' => []
+        ];
+    }
+    
+    
+
+
+
+    // ----------------------------------------------------
     public function delete_client(){
         
         // check if all data is available
@@ -213,6 +278,7 @@ class api_logic
             'results' => []
         ];
     }
+
 
 
 

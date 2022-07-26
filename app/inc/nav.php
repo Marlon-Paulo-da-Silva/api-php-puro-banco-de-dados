@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <header class="Container-fluid text-center p-2 bg-dark text-white">
   <div class="row">
     <div class="col">

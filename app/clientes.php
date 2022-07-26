@@ -82,7 +82,8 @@ if($results['data']['status'] == 'SUCCESS'){
                   <td><?= $cl['email'] ?></td>
                   <td><?= $cl['telefone'] ?></td>
                   <td>
-                    <a href="clientes_apagar.php?id=<?= $cl['id_cliente'] ?>">Apagar</a>
+                    <a href="clientes_editar.php?id=<?= $cl['id_cliente'] ?>"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                    <a href="clientes_apagar.php?id=<?= $cl['id_cliente'] ?>"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
                   </td>
                 </tr>
               <?php } ?>
