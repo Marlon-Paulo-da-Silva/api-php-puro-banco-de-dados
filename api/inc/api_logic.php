@@ -46,6 +46,26 @@ class api_logic
         ];
     }
 
+    public function get_totals()
+    {
+        // returns total clients e products
+        $db = new Database();
+
+        $results = $db->EXE_QUERY("
+            SELECT 'Clientes', COUNT(*) Total FROM clientes WHERE deleted_at IS NULL UNION ALL
+            SELECT 'Produtos', COUNT(*) Total FROM clientes WHERE deleted_at IS NULL
+        ");
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => '',
+            'results' => $results
+        ];
+
+    }
+
+    // ##########################################################################################
+
     // ----------------------------------------------------
     // ENDPOINTS (CLIENTES)
     // ----------------------------------------------------
@@ -278,6 +298,7 @@ class api_logic
 
 
 
+    // ##########################################################################################
 
     // ----------------------------------------------------
     // ENDPOINTS (PRODUTOS)
@@ -508,7 +529,7 @@ class api_logic
             'results' => $results
         ];
     }
-
+    // ##########################################################################################
     // ----------------------------------------------------
     // ENDPOINTS (COLABORADORES)
     // ----------------------------------------------------

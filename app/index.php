@@ -3,6 +3,7 @@
 // dependencies
 require_once('inc/config.php');
 require_once('inc/api_functions.php');
+require_once('inc/functions.php');
 
 
 // // ------------------------------------------------------
@@ -15,6 +16,12 @@ require_once('inc/api_functions.php');
 
 
 // Logica e regras de negocio
+$resultados = api_request('get_totals', 'GET')['data'];
+
+// printData($resultados);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +35,17 @@ require_once('inc/api_functions.php');
 </head>
 <body>
   <?php include('inc/nav.php') ?>
+
+  <div class="container my-5 text-center">
+    <div class="row">
+      <div class="col-sm-6">
+          [total_clientes]
+      </div>
+      <div class="col-sm-6 text-center">
+           [total_produtos]
+      </div>
+    </div>
+  </div>
 
 <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
