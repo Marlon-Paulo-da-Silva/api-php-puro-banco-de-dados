@@ -364,6 +364,33 @@ class api_logic
     }
 
     // ----------------------------------------------------
+    public function get_product()
+    {
+        // return of all data from a certain product
+
+        $sql = "SELECT * FROM produtos WHERE 1 ";
+
+        // check if id exists
+        if(key_exists('id', $this->params)){
+            
+            if(filter_var($this->params['id'], FILTER_VALIDATE_INT)){
+                $sql .= "AND id_produto = " . intval($this->params['id']) . " LIMIT 1";
+            }
+        } else {
+            return $this->error_response('ID product not specified');
+        }
+
+        $db = new database();
+        $results = $db->EXE_QUERY($sql);
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => '',
+            'results' => $results
+        ];
+    }
+
+    // ----------------------------------------------------
     // ENDPOINTS (COLABORADORES)
     // ----------------------------------------------------
 

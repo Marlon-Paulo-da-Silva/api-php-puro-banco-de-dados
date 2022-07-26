@@ -33,7 +33,7 @@ if(isset($_GET['confirm']) && $_GET['confirm'] == "true"){
   exit;
 }
 
-$results = api_request('get_all_products', 'GET', ['id' => $id_produto]);
+$results = api_request('get_product', 'GET', ['id' => $id_produto]);
 
 // verificar se foi encontrado o produto que prentedemos apagar
 if(count($results['data']['results']) == 0){
