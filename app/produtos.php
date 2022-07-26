@@ -14,7 +14,7 @@ require_once('inc/api_functions.php');
 // echo '<hr>';
 
 // Logica e regras de negocio
-$results = api_request('get_all_products', 'GET');
+$results = api_request('get_all_active_products', 'GET');
 
 // Analisar a informação obtida
 if($results['data']['status'] == 'SUCCESS'){
@@ -62,6 +62,7 @@ if($results['data']['status'] == 'SUCCESS'){
               <tr>
                 <th width="50%" class="">Nome</th>
                 <th width="50%" class="text-end">Quantidade (estoque)</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -69,6 +70,9 @@ if($results['data']['status'] == 'SUCCESS'){
                 <tr>
                   <td><?= $pr['produto'] ?></td>
                   <td class="text-end"><?= $pr['quantidade'] ?></td>
+                  <td>
+                    <a href="produtos_apagar.php?id=<?= $pr['id_produto'] ?>">Apagar</a>
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>

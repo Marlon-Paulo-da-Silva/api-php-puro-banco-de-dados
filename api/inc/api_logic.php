@@ -195,7 +195,7 @@ class api_logic
             return $this->error_response('Insuficient client data');
         }
 
-        // HARD delete client on database
+        // SOFT delete client on database
         $db = new database();
 
         
@@ -330,6 +330,35 @@ class api_logic
         return [
             'status' => 'SUCCESS',
             'message' => 'New product add with success',
+            'results' => []
+        ];
+    }
+
+    // ----------------------------------------------------
+    public function delete_product(){
+        
+        // check if all data is available
+        if(
+            !isset($this->params['id'])
+        ){
+            return $this->error_response('Insuficient product data');
+        }
+
+        // soft delete product on database
+        $db = new database();
+
+        
+        $params = [
+            ':id_produto' => $this->params['id']
+        ];
+
+        $db->EXE_NON_QUERY("
+            UPDATE produtos SET deleted_at = NOW() WHERE id_produto = :id_produto LIMIT 1
+            ", $params);
+
+        return [
+            'status' => 'SUCCESS',
+            'message' => 'Product deleted with success',
             'results' => []
         ];
     }
