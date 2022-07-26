@@ -60,18 +60,19 @@ if($results['data']['status'] == 'SUCCESS'){
           <table class="table">
             <thead class="table-dark">
               <tr>
-                <th width="50%" class="">Nome</th>
-                <th width="50%" class="text-end">Quantidade (estoque)</th>
-                <th></th>
+                <th class="">Nome</th>
+                <th >Quantidade (estoque)</th>
+                <th class="text-end">Ação</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach($produtos as $pr){ ?>
                 <tr>
                   <td><?= $pr['produto'] ?></td>
-                  <td class="text-end"><?= $pr['quantidade'] ?></td>
-                  <td>
-                    <a href="produtos_apagar.php?id=<?= $pr['id_produto'] ?>">Apagar</a>
+                  <td ><?= $pr['quantidade'] ?></td>
+                  <td class="text-end">
+                    <a href="produto_editar.php?id=<?= $pr['id_produto'] ?>"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                    <a href="produto_apagar.php?id=<?= $pr['id_produto'] ?>"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
                   </td>
                 </tr>
               <?php } ?>

@@ -72,7 +72,7 @@ if($results['data']['status'] == 'SUCCESS'){
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Telefone</th>
-                <th>Ação</th>
+                <th class="text-end">Ação</th>
               </tr>
             </thead>
             <tbody>
@@ -81,7 +81,7 @@ if($results['data']['status'] == 'SUCCESS'){
                   <td><?= $cl['nome'] ?></td>
                   <td><?= $cl['email'] ?></td>
                   <td><?= $cl['telefone'] ?></td>
-                  <td>
+                  <td class="text-end">
                     <a href="clientes_editar.php?id=<?= $cl['id_cliente'] ?>"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
                     <a href="clientes_apagar.php?id=<?= $cl['id_cliente'] ?>"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
                   </td>

@@ -30,6 +30,7 @@ A Aplicação faz todas as requisições através da API Que está dentro do pr�
 - [X] Buscar Todos os produtos
 - [X] Adicionar Produtos
 - [X] Apagar Produtos
+- [X] Atualizar Produtos
 - [X] Buscar os produtos sem Estoque
 - [X] Buscar os produtos com Estoque
 - [ ] Buscar produto por id_produto
