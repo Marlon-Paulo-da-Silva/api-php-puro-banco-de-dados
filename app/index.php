@@ -16,9 +16,9 @@ require_once('inc/functions.php');
 
 
 // Logica e regras de negocio
-$resultados = api_request('get_totals', 'GET')['data'];
+$totais = api_request('get_totals', 'GET')['data']['results'];
 
-// printData($resultados);
+// printData($totais);
 
 
 
@@ -39,10 +39,10 @@ $resultados = api_request('get_totals', 'GET')['data'];
   <div class="container my-5 text-center">
     <div class="row">
       <div class="col-sm-6">
-          [total_clientes]
+          <h3>Clientes: <?= $totais[0]['Total'] ?></h3>
       </div>
       <div class="col-sm-6 text-center">
-           [total_produtos]
+        <h3>Produtos: <?= $totais[1]['Total'] ?></h3>
       </div>
     </div>
   </div>
